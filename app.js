@@ -19,8 +19,29 @@ class Ball {
     }
 }
 
+class Paddle {
+    constructor(x, y, width, height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    draw(context) {
+        context.fillStyle = "blue";
+        context.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d")
 
 const ball = new Ball(200, 90, 10, 2, 2)
 ball.draw(context);
+
+function gameLoop() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    ball.update();
+    ball.draw(context);
+    requestAnimationFrame(gameLoop);
+}
