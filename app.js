@@ -18,3 +18,9 @@ class Ball {
         this.y += this.speedY;
     }
 }
+
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d")
+
+const ball = new Ball(200, 90, 10, 2, 2)
+ball.draw(context);
