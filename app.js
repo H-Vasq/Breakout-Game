@@ -36,6 +36,13 @@ class Paddle {
     }
 }
 
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d")
+
+const ball = new Ball(200, 200, 10, -2, -2)
+const paddle = new Paddle(175, canvas.height-20, 70, 10, 9)
+
+
 document.addEventListener("keydown", (event) => {
     if(event.key === "ArrowLeft") {
         paddle.move(-1);
@@ -44,19 +51,35 @@ document.addEventListener("keydown", (event) => {
     }   
 });
 
-
-
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d")
-
-const ball = new Ball(200, 200, 10, 2, 2)
-const paddle = new Paddle(175, canvas.height-20, 70, 10, 5)
+document.addEventListener("keyup", (event) => {
+    if(event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        paddle.move(0); // Stop moving when key is released
+    }
+});
 
 
 function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     ball.update();
     ball.draw(context);
+
+    if(ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
+        ball.speedX *= -1;
+    }
+
+    // Bounce off top wall
+    if(ball.y - ball.radius < 0) {
+        ball.y = ball.radius; // Prevent sticking
+        ball.speedY *= -1;
+    }
+
+    if (
+        ball.x + ball.radius > paddle.x && 
+        ball.x - ball.radius < paddle.x + paddle.width &&
+        ball.y + ball.radius > paddle.y
+    ) {
+        ball.speedY *= -1; // Bounce off paddle
+    }   
 
     paddle.draw(context);
 
