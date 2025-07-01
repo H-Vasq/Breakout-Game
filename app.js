@@ -58,31 +58,27 @@ document.addEventListener("keyup", (event) => {
 });
 
 
-
-
-
-
-
-
 function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     ball.update();
     ball.draw(context);
 
     if(ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
-        ball.speedX *= -1; // Bounce off left/right walls
+        ball.speedX *= -1;
     }
 
-
+    // Bounce off top wall
     if(ball.y - ball.radius < 0) {
-        ball.speedY = -ball.speedY; // Bounce off top wall
+        ball.y = ball.radius; // Prevent sticking
+        ball.speedY *= -1;
     }
 
-
-    if(ball.x + ball.radius > paddle.x && 
-       ball.x - ball.radius < paddle.x + paddle.width &&
-       ball.y + ball.radius > paddle.y) {
-        ball.speedY *= -ball.speedY; // Bounce off paddle
+    if (
+        ball.x + ball.radius > paddle.x && 
+        ball.x - ball.radius < paddle.x + paddle.width &&
+        ball.y + ball.radius > paddle.y
+    ) {
+        ball.speedY *= -1; // Bounce off paddle
     }   
 
     paddle.draw(context);
