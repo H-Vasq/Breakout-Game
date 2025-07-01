@@ -14,17 +14,18 @@ class Ball {
         context.closePath();
     }
     update() {
-        this.X += this.speedX;
+        this.x += this.speedX;
         this.y += this.speedY;
     }
 }
 
 class Paddle {
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, speed) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.speed = speed;
     }
     draw(context) {
         context.fillStyle = "blue";
@@ -36,15 +37,23 @@ class Paddle {
 }
 
 
+
+
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d")
 
-const ball = new Ball(200, 90, 10, 2, 2)
-ball.draw(context);
+const ball = new Ball(200, 200, 10, 2, 2)
+const paddle = new Paddle(175, canvas.height-20, 70, 10, 5)
+
 
 function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     ball.update();
     ball.draw(context);
+
+    paddle.draw(context);
+
     requestAnimationFrame(gameLoop);
 }
+
+gameLoop();
