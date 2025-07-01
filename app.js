@@ -36,6 +36,13 @@ class Paddle {
     }
 }
 
+document.addEventListener("keydown", (event) => {
+    if(event.key === "ArrowLeft") {
+        paddle.move(-1);
+    }   else if(event.key === "ArrowRight") {
+        paddle.move(1);
+    }   
+});
 
 
 
