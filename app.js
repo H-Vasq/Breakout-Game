@@ -58,6 +58,8 @@ function gameLoop() {
     ball.update();
     ball.draw(context);
 
+    
+
     paddle.draw(context);
 
     requestAnimationFrame(gameLoop);
