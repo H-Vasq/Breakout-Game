@@ -57,6 +57,17 @@ const context = canvas.getContext("2d")
 const ball = new Ball(200, 200, 10, -2, -2)
 const paddle = new Paddle(175, canvas.height-20, 70, 10, 9)
 
+const bricks = [];
+
+function createBricks(rows, cols, brickWidth, brickHeight) {
+    for(let row = 0; row < rows; row++) {
+        for(let col = 0; col < cols; col++) {
+            const x = col * (brickWidth + 10) + 20;
+            const y = row * (brickHeight + 10) + 20;
+            bricks.push(new Brick(x, y, brickWidth, brickHeight));
+        }
+    }
+}
 
 document.addEventListener("keydown", (event) => {
     if(event.key === "ArrowLeft") {
