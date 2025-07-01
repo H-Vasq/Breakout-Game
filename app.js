@@ -30,6 +30,9 @@ class Paddle {
         context.fillStyle = "blue";
         context.fillRect(this.x, this.y, this.width, this.height);
     }
+    move(direction) {
+        this.x += this.speed * direction;
+    }
 }
 
 
