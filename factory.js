@@ -1,13 +1,10 @@
-function Person(name) {
-    this.name = name
+class Person {
+    talk() {
+        return 'Talking';
+    }
 }
 
-const doggy = new Person('Doggy')
+const me = new Person();
+const you = new Person();
 
-Person.prototype.talk = function() {
-    return `Ciao, io sono ${this.name}`
-}
-
-const mary = new Person('Mary');
-
-console.log(mary.talk())
+console.log(me);
