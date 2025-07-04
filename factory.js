@@ -1,13 +1,7 @@
-function createPerson(name) {
-    return {
-        name: name,
-        talk() {
-            return `I am ${this.name}`
-        }
-    }
+function Person(name) {
+    this.name = name
 }
 
-const me = createPerson('Bob')
-const you = createPerson('Harry')
+const doggy = new Person('Doggy')
 
-console.log(me)
+console.log(doggy)
