@@ -1,7 +1,8 @@
-const me = {
+class Person {
     talk() {
         return 'Talking';
     }
 }
 
-me.talk();
+const me = new Person();
+const you = new Person();
