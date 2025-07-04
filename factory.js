@@ -4,4 +4,10 @@ function Person(name) {
 
 const doggy = new Person('Doggy')
 
-console.log(doggy)
+Person.prototype.talk = function() {
+    return `Ciao, io sono ${this.name}`
+}
+
+const mary = new Person('Mary');
+
+console.log(mary.talk())
